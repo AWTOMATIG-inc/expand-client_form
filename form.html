@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Contact / Call / Summary Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        :root {
+            --background: oklch(0.9940 0 0);
+            --foreground: oklch(0 0 0);
+            --card: oklch(0.9940 0 0);
+            --card-foreground: oklch(0 0 0);
+            --popover: oklch(0.9911 0 0);
+            --popover-foreground: oklch(0 0 0);
+            --primary: oklch(0.5393 0.2713 286.7462);
+            --primary-foreground: oklch(1.0000 0 0);
+            --secondary: oklch(0.9540 0.0063 255.4755);
+            --secondary-foreground: oklch(0.1344 0 0);
+            --muted: oklch(0.9702 0 0);
+            --muted-foreground: oklch(0.4386 0 0);
+            --accent: oklch(0.9393 0.0288 266.3680);
+            --accent-foreground: oklch(0.5445 0.1903 259.4848);
+            --destructive: oklch(0.6290 0.1902 23.0704);
+            --destructive-foreground: oklch(1.0000 0 0);
+            --border: oklch(0.9300 0.0094 286.2156);
+            --input: oklch(0.9401 0 0);
+            --ring: oklch(0 0 0);
+            --chart-1: oklch(0.7459 0.1483 156.4499);
+            --chart-2: oklch(0.5393 0.2713 286.7462);
+            --chart-3: oklch(0.7336 0.1758 50.5517);
+            --chart-4: oklch(0.5828 0.1809 259.7276);
+            --chart-5: oklch(0.5590 0 0);
+            --sidebar: oklch(0.9777 0.0051 247.8763);
+            --sidebar-foreground: oklch(0 0 0);
+            --sidebar-primary: oklch(0 0 0);
+            --sidebar-primary-foreground: oklch(1.0000 0 0);
+            --sidebar-accent: oklch(0.9401 0 0);
+            --sidebar-accent-foreground: oklch(0 0 0);
+            --sidebar-border: oklch(0.9401 0 0);
+            --sidebar-ring: oklch(0 0 0);
+            --font-sans: Plus Jakarta Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-serif: Lora, serif;
+            --font-mono: IBM Plex Mono, monospace;
+            --radius: 1.4rem;
+            --shadow-x: 0px;
+            --shadow-y: 2px;
+            --shadow-blur: 3px;
+            --shadow-spread: 0px;
+            --shadow-opacity: 0.16;
+            --shadow-color: hsl(0 0% 0%);
+            --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
+            --shadow-xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
+            --shadow-sm: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 1px 2px -1px hsl(0 0% 0% / 0.16);
+            --shadow: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 1px 2px -1px hsl(0 0% 0% / 0.16);
+            --shadow-md: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 2px 4px -1px hsl(0 0% 0% / 0.16);
+            --shadow-lg: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 4px 6px -1px hsl(0 0% 0% / 0.16);
+            --shadow-xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
+            --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.40);
+            --tracking-normal: -0.025em;
+            --spacing: 0.27rem;
+        }
+
+        .dark {
+            --background: oklch(0.2223 0.0060 271.1393);
+            --foreground: oklch(0.9551 0 0);
+            --card: oklch(0.2568 0.0076 274.6528);
+            --card-foreground: oklch(0.9551 0 0);
+            --popover: oklch(0.2568 0.0076 274.6528);
+            --popover-foreground: oklch(0.9551 0 0);
+            --primary: oklch(0.6132 0.2294 291.7437);
+            --primary-foreground: oklch(1.0000 0 0);
+            --secondary: oklch(0.2940 0.0130 272.9312);
+            --secondary-foreground: oklch(0.9551 0 0);
+            --muted: oklch(0.2940 0.0130 272.9312);
+            --muted-foreground: oklch(0.7058 0 0);
+            --accent: oklch(0.2795 0.0368 260.0310);
+            --accent-foreground: oklch(0.7857 0.1153 246.6596);
+            --destructive: oklch(0.7106 0.1661 22.2162);
+            --destructive-foreground: oklch(1.0000 0 0);
+            --border: oklch(0.3289 0.0092 268.3843);
+            --input: oklch(0.3289 0.0092 268.3843);
+            --ring: oklch(0.6132 0.2294 291.7437);
+            --chart-1: oklch(0.8003 0.1821 151.7110);
+            --chart-2: oklch(0.6132 0.2294 291.7437);
+            --chart-3: oklch(0.8077 0.1035 19.5706);
+            --chart-4: oklch(0.6691 0.1569 260.1063);
+            --chart-5: oklch(0.7058 0 0);
+            --sidebar: oklch(0.2011 0.0039 286.0396);
+            --sidebar-foreground: oklch(0.9551 0 0);
+            --sidebar-primary: oklch(0.6132 0.2294 291.7437);
+            --sidebar-primary-foreground: oklch(1.0000 0 0);
+            --sidebar-accent: oklch(0.2940 0.0130 272.9312);
+            --sidebar-accent-foreground: oklch(0.6132 0.2294 291.7437);
+            --sidebar-border: oklch(0.3289 0.0092 268.3843);
+            --sidebar-ring: oklch(0.6132 0.2294 291.7437);
+        }
+
+        /* Layout styles */
+        body {
+            letter-spacing: var(--tracking-normal);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* stack nav + card */
+            align-items: center;
+            /* center card horizontally */
+            justify-content: flex-start;
+            background: radial-gradient(circle at top, var(--sidebar), var(--background));
+            color: var(--foreground);
+            font-family: var(--font-sans);
+            padding: 0;
+        }
+
+        /* Nav bar */
+        nav.navbar {
+            width: 100%;
+            background: oklch(from var(--input) l c h / 0.2);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid oklch(from var(--border) l c h / 0.4);
+            box-shadow: 0 6px 12px -10px oklch(0 0 0 / 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0.6rem 1rem;
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            height: 34px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px oklch(0 0 0 / 0.4));
+        }
+
+        .nav-title {
+            flex: 1;
+            text-align: center;
+            font-size: 1.4rem;
+            /* enlarged */
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-spacer {
+            width: 34px;
+            /* same width as logo for balance */
+        }
+
+        /* Card (form container) */
+        .card {
+            background: var(--card);
+            color: var(--card-foreground);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 2.4rem 2.6rem 2.2rem;
+            max-width: 560px;
+            width: 100%;
+            margin-top: 3rem;
+            /* space below nav */
+        }
+
+        h1 {
+            margin: 0 0 1.4rem;
+            font-size: 1.5rem;
+            letter-spacing: var(--tracking-tight);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .field {
+            margin-bottom: 1.1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.85rem;
+            color: var(--muted-foreground);
+        }
+
+        select,
+        input,
+        button {
+            font-family: inherit;
+        }
+
+        .control {
+            width: 100%;
+            border-radius: 0.9rem;
+            border: 1px solid var(--border);
+            background: oklch(from var(--input) l c h / 0.7);
+            color: var(--foreground);
+            padding: 0.65rem 0.9rem;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease,
+                background-color 0.15s ease, transform 0.05s ease;
+        }
+
+        .control::placeholder {
+            color: oklch(from var(--muted-foreground) l c h / 0.6);
+        }
+
+        .control:focus-visible {
+            border-color: var(--ring);
+            box-shadow: 0 0 0 1px var(--ring);
+            background: oklch(from var(--input) l c h / 0.9);
+            transform: translateY(-0.5px);
+        }
+
+        .control[disabled] {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .fieldset {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed oklch(from var(--border) l c h / 0.6);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .actions {
+            margin-top: 1.4rem;
+            display: flex;
+            gap: 0.6rem;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.55rem 1.3rem;
+            border: 1px solid transparent;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: transform 0.06s ease, box-shadow 0.12s ease,
+                background-color 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: radial-gradient(circle at 0% 0%, var(--accent), var(--primary));
+            color: var(--primary-foreground);
+            box-shadow: 0 0 0 1px oklch(from var(--primary) l c h / 0.5),
+                0 12px 30px -18px oklch(from var(--primary) l c h / 0.8);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 0 1px var(--primary),
+                0 14px 34px -20px oklch(from var(--primary) l c h / 0.9);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: oklch(from var(--secondary) l c h / 0.15);
+            color: var(--accent-foreground);
+            border-color: oklch(from var(--border) l c h / 0.6);
+        }
+
+        .btn-secondary:hover {
+            background: oklch(from var(--secondary) l c h / 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .status {
+            min-height: 1.1rem;
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+            color: var(--muted-foreground);
+        }
+
+        .status.success {
+            color: #8be9c7;
+        }
+
+        .status.error {
+            color: oklch(0.7106 0.1661 22.2162);
+        }
+
+        /* Calendar section */
+        .calendar-wrapper {
+            margin-top: 0.75rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid oklch(from var(--border) l c h / 0.9);
+            background: radial-gradient(circle at top, oklch(from var(--accent) l c h / 0.25), transparent),
+                oklch(from var(--sidebar) l c h / 0.3);
+        }
+
+        .calendar-frame {
+            width: 100%;
+            height: 380px;
+            border: none;
+            display: block;
+            background: transparent;
+        }
+
+        .calendar-note {
+            font-size: 0.8rem;
+            padding: 0.6rem 0.75rem;
+            color: oklch(from var(--muted-foreground) l c h / 0.9);
+            border-top: 1px dashed oklch(from var(--border) l c h / 0.7);
+            backdrop-filter: blur(8px);
+        }
+
+        @media (max-width: 640px) {
+            .card {
+                padding: 1.7rem 1.5rem 1.6rem;
+                margin-top: 2rem;
+            }
+
+            h1 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <img src="b2b-logo.png" alt="Expand B2B Logo" class="nav-logo" />
+            <span class="nav-title">EXPAND B2B</span>
+            <div class="nav-spacer"></div>
+        </div>
+    </nav>
+
+    <!-- Card containing the form -->
+    <div class="card">
+        <h1>Add Contact Information / Schedule a Call / Conversation Summary</h1>
+        <p class="subtitle">
+            Choose what you want to do. Fields will adapt automatically.
+        </p>
+
+        <form id="mainForm" autocomplete="off">
+            <!-- Option selector -->
+            <div class="field">
+                <label for="actionSelect">Choose an Option</label>
+                <select id="actionSelect" class="control" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="add-contact">Add to Contacts</option>
+                    <option value="schedule-call">Schedule a Call</option>
+                    <option value="conversation-summary">Conversation Summary</option>
+                </select>
+            </div>
+
+            <!-- Add to Contacts fields -->
+            <div id="contactFields" class="fieldset hidden">
+                <div class="field">
+                    <label for="company">Company</label>
+                    <input id="company" name="company" class="control" type="text" placeholder="Acme Inc." />
+                </div>
+
+                <div class="field">
+                    <label for="website">Website</label>
+                    <input id="website" name="website" class="control" type="url" placeholder="https://example.com" />
+                </div>
+
+                <div class="field">
+                    <label for="clientName">Client Name</label>
+                    <input id="clientName" name="clientName" class="control" type="text" placeholder="John Doe" />
+                </div>
+
+                <div class="field">
+                    <label for="contactEmail">Email</label>
+                    <input id="contactEmail" name="contactEmail" class="control" type="email"
+                        placeholder="name@example.com" />
+                </div>
+
+                <div class="field">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" class="control" type="tel" placeholder="+1 555 123 4567" />
+                </div>
+            </div>
+
+            <!-- Conversation Summary fields -->
+            <div id="summaryFields" class="fieldset hidden">
+                <div class="field">
+                    <label for="summaryEmail">Email</label>
+                    <input id="summaryEmail" name="summaryEmail" class="control" type="email"
+                        placeholder="name@example.com" />
+                </div>
+            </div>
+
+            <!-- Schedule a Call / Calendar -->
+            <div id="calendarSection" class="fieldset hidden">
+                <div class="calendar-wrapper">
+                    <iframe id="calendarFrame" class="calendar-frame"
+                        src="https://cal.com/expand-b2b/test-event?embed=true" title="Schedule a Call"></iframe>
+                    <div class="calendar-note">
+                        Use the calendar above to pick a time. When your booking is confirmed,
+                        click <strong>Done</strong> to return to the main form.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="actions">
+                <button type="submit" id="submitBtn" class="btn btn-primary" disabled>
+                    Submit
+                </button>
+                <button type="button" id="doneBtn" class="btn btn-secondary hidden">
+                    Done
+                </button>
+            </div>
+
+            <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+    </div>
+
+    <!-- JavaScript logic (unchanged) -->
+    <script>
+        (function () {
+            const WEBHOOK_URL = "https://n8n.srv1094866.hstgr.cloud/webhook-test/form-submission"; // replace with your webhook URL
+
+            const form = document.getElementById("mainForm");
+            const actionSelect = document.getElementById("actionSelect");
+
+            const contactFields = document.getElementById("contactFields");
+            const summaryFields = document.getElementById("summaryFields");
+            const calendarSection = document.getElementById("calendarSection");
+
+            const submitBtn = document.getElementById("submitBtn");
+            const doneBtn = document.getElementById("doneBtn");
+            const statusEl = document.getElementById("status");
+
+            function setStatus(message, type) {
+                statusEl.textContent = message || "";
+                statusEl.classList.remove("success", "error");
+                if (type) statusEl.classList.add(type);
+            }
+
+            function hideAllSections() {
+                contactFields.classList.add("hidden");
+                summaryFields.classList.add("hidden");
+                calendarSection.classList.add("hidden");
+            }
+
+            function resetFormUI() {
+                form.reset();
+                actionSelect.value = "";
+                hideAllSections();
+                submitBtn.disabled = true;
+                submitBtn.classList.remove("hidden");
+                doneBtn.classList.add("hidden");
+                setStatus("");
+            }
+
+            // Handle option change
+            actionSelect.addEventListener("change", () => {
+                const value = actionSelect.value;
+                hideAllSections();
+                setStatus("");
+
+                if (value === "add-contact") {
+                    contactFields.classList.remove("hidden");
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove("hidden");
+                    doneBtn.classList.add("hidden");
+                } else if (value === "conversation-summary") {
+                    summaryFields.classList.remove("hidden");
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove("hidden");
+                    doneBtn.classList.add("hidden");
+                } else if (value === "schedule-call") {
+                    calendarSection.classList.remove("hidden");
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add("hidden");
+                    doneBtn.classList.remove("hidden");
+                }
+            });
+
+            // Submit for options 1 & 3
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const action = actionSelect.value;
+                if (!action || action === "schedule-call") return;
+
+                setStatus("Sending...", null);
+                submitBtn.disabled = true;
+
+                const payload = { action };
+
+                if (action === "add-contact") {
+                    payload.company = document.getElementById("company").value.trim();
+                    payload.website = document.getElementById("website").value.trim();
+                    payload.clientName = document.getElementById("clientName").value.trim();
+                    payload.email = document.getElementById("contactEmail").value.trim();
+                    payload.phone = document.getElementById("phone").value.trim();
+                } else if (action === "conversation-summary") {
+                    payload.email = document.getElementById("summaryEmail").value.trim();
+                }
+
+                try {
+                    if (WEBHOOK_URL && WEBHOOK_URL !== "WEBHOOK_URL_HERE") {
+                        await fetch(WEBHOOK_URL, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(payload),
+                        });
+                    } else {
+                        console.warn("No webhook URL set. Payload:", payload);
+                    }
+
+                    setStatus("Submitted successfully.", "success");
+                    setTimeout(resetFormUI, 700);
+                } catch (err) {
+                    console.error(err);
+                    setStatus("Something went wrong. Please try again.", "error");
+                    submitBtn.disabled = false;
+                }
+            });
+
+            // Done for Schedule a Call
+            doneBtn.addEventListener("click", async () => {
+                const payload = {
+                    action: "schedule-call",
+                    note: "User clicked Done after using embedded calendar.",
+                    timestamp: new Date().toISOString(),
+                };
+
+                setStatus("Saving...", null);
+                doneBtn.disabled = true;
+
+                try {
+                    if (WEBHOOK_URL && WEBHOOK_URL !== "WEBHOOK_URL_HERE") {
+                        await fetch(WEBHOOK_URL, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(payload),
+                        });
+                    } else {
+                        console.warn("No webhook URL set. Payload for Done:", payload);
+                    }
+
+                    setStatus("Calendar flow completed.", "success");
+                    setTimeout(resetFormUI, 700);
+                } catch (err) {
+                    console.error(err);
+                    setStatus("Could not save. You can still close this window.", "error");
+                    doneBtn.disabled = false;
+                }
+            });
+
+            // Initialize
+            resetFormUI();
+        })();
+    </script>
+</body>
+
+</html>
